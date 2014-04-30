@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace DatabaseConnect.Master
 {
+    /// <summary>
+    /// This table is for part master table.
+    /// </summary>
     public class PartMaster
     {
         [Key]
