@@ -10,11 +10,11 @@ using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
 using wms.Filters;
 using wms.Models;
+using BizLogic;
 
 namespace wms.Controllers
 {
     [Authorize]
-    [InitializeSimpleMembership]
     public class AccountController : Controller
     {
         //
@@ -35,8 +35,13 @@ namespace wms.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginModel model, string returnUrl)
         {
-            if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
+            AccountBizLogic accountBiz = new AccountBizLogic();
+            //if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
+            if (accountBiz.ValidateAccount(model.UserName, model.Password))
             {
+                FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
+                //get user 
+                HttpContext.Response.Cookies.Add(new HttpCookie("UserName", model.UserName));
                 return RedirectToLocal(returnUrl);
             }
 
@@ -52,8 +57,8 @@ namespace wms.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
-            WebSecurity.Logout();
-
+            FormsAuthentication.SignOut();
+            Session.RemoveAll();
             return RedirectToAction("Index", "Home");
         }
 
@@ -263,26 +268,26 @@ namespace wms.Controllers
             if (ModelState.IsValid)
             {
                 // Insert a new user into the database
-                using (UsersContext db = new UsersContext())
-                {
-                    UserProfile user = db.UserProfiles.FirstOrDefault(u => u.UserName.ToLower() == model.UserName.ToLower());
-                    // Check if user already exists
-                    if (user == null)
-                    {
-                        // Insert name into the profile table
-                        db.UserProfiles.Add(new UserProfile { UserName = model.UserName });
-                        db.SaveChanges();
+                //using (UsersContext db = new UsersContext())
+                //{
+                //    UserProfile user = db.UserProfiles.FirstOrDefault(u => u.UserName.ToLower() == model.UserName.ToLower());
+                //    // Check if user already exists
+                //    if (user == null)
+                //    {
+                //        // Insert name into the profile table
+                //        db.UserProfiles.Add(new UserProfile { UserName = model.UserName });
+                //        db.SaveChanges();
 
-                        OAuthWebSecurity.CreateOrUpdateAccount(provider, providerUserId, model.UserName);
-                        OAuthWebSecurity.Login(provider, providerUserId, createPersistentCookie: false);
+                //        OAuthWebSecurity.CreateOrUpdateAccount(provider, providerUserId, model.UserName);
+                //        OAuthWebSecurity.Login(provider, providerUserId, createPersistentCookie: false);
 
-                        return RedirectToLocal(returnUrl);
-                    }
-                    else
-                    {
-                        ModelState.AddModelError("UserName", "User name already exists. Please enter a different user name.");
-                    }
-                }
+                //        return RedirectToLocal(returnUrl);
+                //    }
+                //    else
+                //    {
+                //        ModelState.AddModelError("UserName", "User name already exists. Please enter a different user name.");
+                //    }
+                //}
             }
 
             ViewBag.ProviderDisplayName = OAuthWebSecurity.GetOAuthClientData(provider).DisplayName;
