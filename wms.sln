@@ -5,8 +5,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wms", "wms\wms.csproj", "{9
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wms.Tests", "wms.Tests\wms.Tests.csproj", "{52547652-A504-47A2-B0EC-4BE8CB4FA408}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "wms-data", "wms-data\wms-data.sqlproj", "{07F28469-89FC-409F-A2CB-550C0957D119}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseConnect", "DatabaseConnect\DatabaseConnect.csproj", "{BD9803FB-4890-47D4-9F7A-83353347F0D5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IDataAccessLayer", "IDataAccessLayer\IDataAccessLayer.csproj", "{51D953BD-B35B-41D0-BC9B-2E81A4239350}"
@@ -31,12 +29,6 @@ Global
 		{52547652-A504-47A2-B0EC-4BE8CB4FA408}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52547652-A504-47A2-B0EC-4BE8CB4FA408}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{52547652-A504-47A2-B0EC-4BE8CB4FA408}.Release|Any CPU.Build.0 = Release|Any CPU
-		{07F28469-89FC-409F-A2CB-550C0957D119}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{07F28469-89FC-409F-A2CB-550C0957D119}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{07F28469-89FC-409F-A2CB-550C0957D119}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{07F28469-89FC-409F-A2CB-550C0957D119}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{07F28469-89FC-409F-A2CB-550C0957D119}.Release|Any CPU.Build.0 = Release|Any CPU
-		{07F28469-89FC-409F-A2CB-550C0957D119}.Release|Any CPU.Deploy.0 = Release|Any CPU
 		{BD9803FB-4890-47D4-9F7A-83353347F0D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BD9803FB-4890-47D4-9F7A-83353347F0D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD9803FB-4890-47D4-9F7A-83353347F0D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
