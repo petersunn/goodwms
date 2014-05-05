@@ -23,6 +23,11 @@ namespace wms
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/leftmenu").Include(
+            "~/Scripts/LeftMenu/js/index.js"));
+
+            bundles.Add(new StyleBundle("~/bundles/leftmenucss").Include("~/Scripts/LeftMenu/css/style.css"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css"));
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(

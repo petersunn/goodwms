@@ -5,8 +5,9 @@
     <title>@ViewBag.Title - The world best WMS.</title>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width" />
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    @*@Styles.Render("~/Content/css")*@
+    @*@Scripts.Render("~/bundles/modernizr")*@
+    @Scripts.Render("~/bundles/jquery")
 </head>
 <body>
     <header>
@@ -22,12 +23,11 @@
         </div>
     </header>
     <div id="body">
-        <table id="main" cellpadding="0" cellspacing="0" width="100%" class="MainPage">
+        @RenderSection("featured", required: false)
+        <table id="main" cellpadding="0" cellspacing="0" width="100%">
             <tr>
-                <td id="controlLeftDiv" style="width: 200px;" class="left_nav">
-                    <div id="divLeftMenu">
-                        @Html.Partial("~/Views/Shared/LeftMenu.cshtml")
-                    </div>
+                <td id="controlLeftDiv" style="width: 200px;">
+                    @Html.Partial("~/Views/Shared/LeftMenu.cshtml")
                 </td>
                 <td id="controlBarDiv" style="width: 6px; border-right: 1px solid #b8b8b8;">
                     <div id="mainBar" class="mainBarLeft" onclick="t2v_main.ControlDiv();">

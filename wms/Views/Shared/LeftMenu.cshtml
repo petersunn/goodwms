@@ -1,0 +1,82 @@
+﻿@using Web.Energizer.UserManagement
+@using System.Configuration;
+@{
+    var user = UserHelper.CurrentUser;
+    if (user == null)
+    {
+        //Response.Redirect("~/Account/LogOn");
+    }
+    //var userId = user.UserId;
+    var controller = ViewData["controller"] ?? Request.RequestContext.RouteData.Values["controller"].ToString();
+    var action = ViewData["action"] ?? Request.RequestContext.RouteData.Values["action"].ToString();
+    var full = controller + "_" + action;
+}
+@*@Styles.Render("~/Content/css")*@
+@Scripts.Render("~/bundles/leftmenu")
+@Styles.Render("~/bundles/leftmenucss")
+<script language="javascript" type="text/javascript">
+    var menuID;
+    //debugger;
+    if ("@(action)" == "Report") {
+        menuID = 1;
+    }
+    else{
+        $(document).ready(function () {
+            if("@(controller)" == "ClaimVIR")
+            {
+                $("#liClaim").addClass("liSelected");
+            }
+            if("@(action)" == "GetToDoListPage")
+            {
+                $("#liToDoList").addClass("liSelected");
+            }
+
+            $("#li@(controller)").addClass("liSelected");
+        });
+    }
+</script>
+@if (Request.IsAuthenticated )
+{
+    <div class="sidebar">
+        <ul>
+            <li><a href="#"><i class="fa fa-dashboard push"></i>Dashboard<i class="fa fa-angle-right"></i></a><span class="hover"></span>
+            </li>
+            <li><a href="#"><i class="fa fa-user push"></i>Users<i class="fa fa-angle-right"></i></a><span class="hover"></span>
+                <ul class="sub-menu">
+                    <li><a href="#">Add User<i class="fa fa-angle-right"></i></a><span class="hover"></span></li>
+                    <li><a href="#">Manage Users<i class="fa fa-angle-right"></i></a><span class="hover"></span></li>
+                </ul>
+            </li>
+            <li><a href="#"><i class="fa fa-cog push"></i>Settings<i class="fa fa-angle-right"></i></a><span class="hover"></span>
+                <ul class="sub-menu">
+                    <li><a href="#">Dashboard Settings<i class="fa fa-angle-right"></i></a><span class="hover"></span></li>
+                    <li><a href="#">Profile Settings<i class="fa fa-angle-right"></i></a><span class="hover"></span></li>
+                    <li><a href="#">Manage Menu<i class="fa fa-angle-right"></i></a><span class="hover"></span></li>
+                    <li><a href="#">User Profiles<i class="fa fa-angle-right"></i></a><span class="hover"></span></li>
+                </ul>
+            </li>
+            <li><a href="#"><i class="fa fa-picture-o push"></i>appearance<i class="fa fa-angle-right"></i></a><span class="hover"></span>
+                <ul class="sub-menu">
+                    <li><a href="#">Change Theme<i class="fa fa-angle-right"></i></a><span class="hover"></span>
+                    </li>
+                    <li><a href="#">Theme Options<i class="fa fa-angle-right"></i></a><span class="hover"></span></li>
+                </ul>
+            </li>
+            <li><a href="#"><i class="fa fa-file push"></i>Information<i class="fa fa-angle-right"></i></a><span class="hover"></span>
+                <ul class="sub-menu">
+                    <li><a href="#">Latest News<i class="fa fa-angle-right"></i></a><span class="hover"></span>
+                    </li>
+                    <li><a href="#">Recent Articles<i class="fa fa-angle-right"></i></a><span class="hover"></span></li>
+                </ul>
+            </li>
+            <li><a href="#"><i class="fa fa-plane push"></i>Contact<i class="fa fa-angle-right"></i></a><span class="hover"></span></li>
+        </ul>
+    </div>
+    <div id="divActivityLog" class="ActiveLog">
+        <span class="li_icon li_icon_r1_c09">&nbsp;</span><div class="activityHeader">
+            &nbsp;Activity
+        </div>
+        <ul class="activityLog" id="ul_activeLog">
+        </ul>
+    </div>
+}
